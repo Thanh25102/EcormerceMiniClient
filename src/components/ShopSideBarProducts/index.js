@@ -30,20 +30,20 @@ function ShopSideBarProducts() {
       <div className={cx('recomend-box')}>
         {productList.length !== 0 ? (
           productList.map((product) => (
-            <div key={product._id} className={cx('recomend-item')}>
+            <div key={product.id} className={cx('recomend-item')}>
               <div className={cx('recomend-img')}>
-                <Link to={`/detail/${product._id}`}>
+                <Link to={`/detail/${product.id}`}>
                   <img src={require(`../../assets/images/${product.image}`)} alt="" />
                 </Link>
               </div>
               <div className={cx('item-information')}>
                 <div className={cx('item-name')}>
-                  <Link to={`/detail/${product._id}`} className={cx('item-link')}>
+                  <Link to={`/detail/${product.id}`} className={cx('item-link')}>
                     {product.title}
                   </Link>
                 </div>
                 <div className={cx('item-price')}>
-                  <p className={cx('price')}>${product.sale}</p>
+                  <p className={cx('price')}>${product.price}</p>
                 </div>
               </div>
             </div>

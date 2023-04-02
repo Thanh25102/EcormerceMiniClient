@@ -1,10 +1,10 @@
 const initState = {
-  searchTitle: '',
   categoryIdList: [],
   price: ['0', '30'],
   page: 1,
   sort: '',
   order: '',
+  limit: 6,
 };
 
 function filterReducer(state, action) {
@@ -19,12 +19,6 @@ function filterReducer(state, action) {
       return {
         ...state,
         categoryIdList: state.categoryIdList.filter((e) => e !== action.payload),
-        page: 1,
-      };
-    case 'set_search_title':
-      return {
-        ...state,
-        searchTitle: action.payload,
         page: 1,
       };
     case 'set_price_filter':

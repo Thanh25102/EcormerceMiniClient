@@ -16,7 +16,6 @@ import { priceFormat } from '~/utils/priceFormat';
 const cx = classNames.bind(styles);
 
 function CartPageProduct({ data, subTotalRef, totalRef, ...passProp }) {
-  console.log('re-render cart product');
   const inputRef = useRef();
   const totalAmountRef = useRef();
   const productRef = useRef();
@@ -39,7 +38,7 @@ function CartPageProduct({ data, subTotalRef, totalRef, ...passProp }) {
     const productId = inputRef.current.dataset.id;
     const amount = inputRef.current.value;
 
-    totalAmountRef.current.innerHTML = `$${priceFormat(amount * data.sale)}`;
+    totalAmountRef.current.innerHTML = `$${priceFormat(amount * data.productByProductId.price)}`;
     updateCartProductsItem(productId, amount);
     const productTotalPrice = priceFormat(getTotalCartProducts());
     subTotalRef.current.innerHTML = `$${productTotalPrice}`;
@@ -56,27 +55,27 @@ function CartPageProduct({ data, subTotalRef, totalRef, ...passProp }) {
     <div className={cx('product')} ref={productRef}>
       <div className={cx('product_item')}>
         <div className={cx('product_imgBox')}>
-          <img className={cx('product_img')} src={require(`../../assets/images/${data.image}`)} alt="" />
+          <img className={cx('product_img')} src={require(`../../assets/images/${data.productByProductId.image}`)} alt="" />
         </div>
         <div className={cx('product_infor')}>
-          <h3 className={cx('product_name')}>{data.title}</h3>
+          <h3 className={cx('product_name')}>{data.productByProductId.name}</h3>
           <div className={cx('delete_icon')}>
             <FontAwesomeIcon
               className={cx('deleteIcon')}
               icon={faCircleXmark}
-              data-id={data._id}
-              onClick={() => handleDeleteItem(data._id)}
+              data-id={data.id}
+              onClick={() => handleDeleteItem(data.id)}
             ></FontAwesomeIcon>
           </div>
         </div>
       </div>
       <div className={cx('product_price')}>
-        <span className={cx('price_amount')}>${data.sale}</span>
+        <span className={cx('price_amount')}>${data.productByProductId.price }</span>
       </div>
       <div className={cx('product_quantity')}>
         <InputQuantity
           ref={inputRef}
-          productId={data._id}
+          productId={data.productByProductId.id}
           value={data.quantity}
           className={cx('cartItem_quantity')}
           onCallApi={handleOnchageQuantity}
@@ -84,7 +83,7 @@ function CartPageProduct({ data, subTotalRef, totalRef, ...passProp }) {
       </div>
       <div className={cx('product_total')}>
         <span ref={totalAmountRef} className={cx('total_amount')}>
-          ${priceFormat(Number(data.sale) * Number(data.quantity))}
+          ${priceFormat(Number(data.productByProductId.price) * Number(data.quantity))}
         </span>
       </div>
     </div>

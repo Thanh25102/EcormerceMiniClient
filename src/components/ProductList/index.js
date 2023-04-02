@@ -49,7 +49,7 @@ function ProductList({ filterState, filterDispatch }) {
       <div className={cx('product-list')}>
         {productListInfor.products ? (
           productListInfor.products.map((data) => {
-            return <ProductCard key={data._id} data={data} toastDispatch={toastDispatch} />;
+            return <ProductCard key={data.id} data={data} toastDispatch={toastDispatch} />;
           })
         ) : (
           <ProductSkeleton cards={6} />

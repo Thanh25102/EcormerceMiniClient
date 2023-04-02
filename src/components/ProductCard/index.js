@@ -43,7 +43,7 @@ function ProductCard({ data, toastDispatch, className }) {
 
   return (
     <div className={cx('product-card', className)}>
-      <Link to={`/detail/${data._id}`}>
+      <Link to={`/detail/${data.id}`}>
         <div className={cx('product-img')}>
           {/* <img /> */}
           <Image src={require(`../../assets/images/${data.image}`)} alt="" />
@@ -57,10 +57,10 @@ function ProductCard({ data, toastDispatch, className }) {
           <p className={cx('description')}>Lorem Ipsum is simply dummy text of the printing.</p>
         </div>
         <div className={cx('product-price')}>
-          <p className={cx('price')}>${data.sale}</p>
+          <p className={cx('price')}>${data.price}</p>
         </div>
         <div className={cx('addToCart-btn')}>
-          <button className={cx('addToCart')} data-id={data._id} onClick={() => handleAddToCart(data._id)}>
+          <button className={cx('addToCart')} data-id={data.id} onClick={() => handleAddToCart(data.id)}>
             <div className={cx('addToCart-title')}>
               <FontAwesomeIcon className={cx('cart-plus_icon')} icon={faCartPlus} />
               <p className={cx('addToCart-text')}>Add to cart</p>

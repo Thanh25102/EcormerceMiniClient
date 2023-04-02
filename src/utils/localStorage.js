@@ -32,14 +32,14 @@ export const setCartProducts = (cartProducts) => {
 
 export const removeCartProductsItem = (productId) => {
   const cart = getCartProducts();
-  let temp = cart.filter((item) => item._id !== productId);
+  let temp = cart.filter((item) => item.id !== productId);
   localStorage.setItem('cartProducts', JSON.stringify(temp));
 };
 
 export const updateCartProductsItem = (productId, quantity) => {
   const cart = getCartProducts();
   for (let product of cart) {
-    if (product._id === productId) {
+    if (product.id === productId) {
       product.quantity = quantity;
     }
   }
@@ -51,7 +51,7 @@ export const getTotalCartProducts = () => {
   let sum = 0;
 
   for (let product of cart) {
-    sum += Number(product.sale) * Number(product.quantity);
+    sum += Number(product.productByProductId.price) * Number(product.quantity);
   }
 
   return sum;

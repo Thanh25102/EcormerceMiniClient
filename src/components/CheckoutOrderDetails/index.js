@@ -1,14 +1,13 @@
 import classNames from 'classnames/bind';
 import { memo, useState } from 'react';
 import Image from '~/components/Image';
-import images from '~/assets/images';
 import { priceFormat } from '~/utils/priceFormat';
 import styles from './CheckoutOrderDetails.module.scss';
 
 const cx = classNames.bind(styles);
 
 function CheckoutOrderDetails({ data }) {
-  console.log('re-render order details');
+  console.log('re-render order details : ',data);
   const [productList] = useState(data);
   let total = 0;
 
@@ -16,19 +15,19 @@ function CheckoutOrderDetails({ data }) {
     <div className={cx('order-details')}>
       <div className={cx('order-products')}>
         {productList.map((product) => {
-          total += product.sale * product.quantity;
+          total += product.productByProductId.price * product.quantity;
           return (
-            <div key={product._id} className={cx('product-item')}>
+            <div key={product.id} className={cx('product-item')}>
               <div className={cx('product-name')}>
                 <div className={cx('product-thumb')}>
-                  <Image className={cx('product-img')} src={require(`../../assets/images/${product.image}`)} />
+                  <Image className={cx('product-img')} src={require(`../../assets/images/${product.productByProductId.image}`)} />
                 </div>
                 <div className={cx('name')}>
-                  <h4 className={cx('product-titile')}>{product.title}</h4>
+                  <h4 className={cx('product-titile')}>{product.productByProductId.name}</h4>
                   <strong className={cx('product-quantity')}> X {product.quantity}</strong>
                 </div>
               </div>
-              <div className={cx('product-price')}>${priceFormat(product.sale * product.quantity)}</div>
+              <div className={cx('product-price')}>${priceFormat(product.productByProductId.price * product.quantity)}</div>
             </div>
           );
         })}

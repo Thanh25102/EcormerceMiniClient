@@ -46,7 +46,6 @@ function Checkout() {
       postCode: yup.string().required('This field is required'),
       phone: yup.string().required('This field is required'),
       email: yup.string().email('Please enter a valid email').required('This field is required'),
-      payment: yup.string().required('This field is required'),
     })
     .required();
 
@@ -70,7 +69,7 @@ function Checkout() {
   };
 
   const handleCheckout = (data) => {
-    console.log(data);
+    console.log("testting");
     const orderNumber = randomNumber(99999999, 10000000);
     const orderDate = getCurrentDateTime();
 
@@ -103,6 +102,28 @@ function Checkout() {
       totalPrice,
       shippingInfor,
     };
+    let order = {
+      firstName: 'John',
+      lastName: 'Doe',
+      companyName: 'Company',
+      country: 'vietname',
+      address: '27/8',
+      phone: '0328735659',
+      email: 'dycjh@example.com',
+
+      orderDetails: [
+        {
+          productId:'',
+          quantity:2,
+
+          orderId:1,
+        }
+      ],
+      quantity :'',
+      status: 'PENDING',
+      createdAt: '2015-25',
+      customerId: '',
+    }
 
     orderApi.addOrder(getAccessToken(), orderInfor);
 

@@ -1,7 +1,6 @@
 import { memo, useEffect, useRef } from 'react';
 import classNames from 'classnames/bind';
 
-import images from '~/assets/images';
 import { getAccessToken } from '~/utils/localStorage';
 import { priceFormat } from '~/utils/priceFormat';
 import Button from '~/components/Button';
@@ -61,9 +60,9 @@ function OrderDetail({ itemList, status, orderNumber, orderDate, orderId, allAct
       <div className={cx('order-product-list')}>
         {itemList
           ? itemList.map((item) => {
-              totalPrice += item.sale * item.quantity;
+              totalPrice += item.price * item.quantity;
               return (
-                <div key={item._id} className={cx('order-product')}>
+                <div key={item.id} className={cx('order-product')}>
                   <div className={cx('product-item')}>
                     <div className={cx('product-imgBox')}>
                       <img className={cx('product_img')} src={require(`../../assets/images/${item.image}`)} alt="" />
@@ -71,10 +70,10 @@ function OrderDetail({ itemList, status, orderNumber, orderDate, orderId, allAct
                     <div className={cx('product-info')}>
                       <span className={cx('product-name')}>{item.title}</span>
                       <span className={cx('product-quantity')}>X{item.quantity}</span>
-                      <span className={cx('product-price')}>${item.sale}</span>
+                      <span className={cx('product-price')}>${item.price}</span>
                     </div>
                   </div>
-                  <span className={cx('product-total')}>${priceFormat(item.sale * item.quantity)}</span>
+                  <span className={cx('product-total')}>${priceFormat(item.price * item.quantity)}</span>
                 </div>
               );
             })
