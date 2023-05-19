@@ -34,10 +34,6 @@ function CheckoutDone() {
                   <span>Total:</span>
                   <strong>${priceFormat(shippingInfor.totalPrice)}</strong>
                 </li>
-                <li className={cx('infor', ' order-payment')}>
-                  <span>Payment method:</span>
-                  <strong>{shippingInfor.payment}</strong>
-                </li>
               </ul>
             </div>
 

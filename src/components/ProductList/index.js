@@ -14,7 +14,7 @@ const cx = classNames.bind(styles);
 
 function ProductList({ filterState, filterDispatch }) {
   const [productListInfor, setProductListInfor] = useState({});
-  const [, toastDispatch] = useToastContext();
+  const [toastDispatch] = useToastContext();
 
   // console.log('re-render product list');
   useEffect(() => {

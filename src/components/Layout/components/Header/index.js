@@ -27,11 +27,6 @@ function Header() {
   const MENU_ITEMS = accessToken
     ? [
         {
-          icon: <FontAwesomeIcon icon={faUser} />,
-          title: 'Profile',
-          to: `/user/account`,
-        },
-        {
           icon: <FontAwesomeIcon icon={faFileInvoiceDollar} />,
           title: 'Purchase',
           to: `/user/purchase`,
@@ -71,7 +66,7 @@ function Header() {
         <div className={cx('nav_actions')}>
           <Menu items={MENU_ITEMS} menuItemClass={cx('menu_item')}>
             {accessToken ? (
-              <Image className={cx('user-avatar')} src={require('~/assets/images/defaultAvatar.png')} alt="avatar" />
+              <Image className={cx('user-avatar')} src={require('~/assets/images/avatardefault.png')} alt="avatar" />
             ) : (
               <div className={cx('nav_user')}>
                 <div className={cx('user_icon')}>

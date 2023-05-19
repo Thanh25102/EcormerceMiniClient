@@ -11,10 +11,7 @@ export const addOrder = async (accessToken, orderInfor) => {
 
 export const getOrders = async (accessToken, status) => {
   try {
-    const params = {
-      status: status,
-    };
-    const result = await request.get(`/order`, { headers: { token: `Bearer ${accessToken}` }, params });
+    const result = await request.get(`/orders/user`, { headers: { token: `Bearer ${accessToken}` } });
     console.log(result);
     return result;
   } catch (err) {

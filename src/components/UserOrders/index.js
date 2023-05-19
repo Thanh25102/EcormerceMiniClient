@@ -25,7 +25,6 @@ function UserOrders() {
     };
     fetchOrders();
   }, [orderStatus]);
-
   const onStatusChangeUpdate = useCallback(
     (id) => {
       setOrders(orders.filter((order) => order.id !== id));
@@ -36,22 +35,6 @@ function UserOrders() {
   return (
     <div className={cx('user-orders')}>
       <div className={cx('order-status')}>
-        <Button
-          ref={allActiveStatusRef}
-          className={cx('status', orderStatus === 0 && 'active-status')}
-          onClick={() => setOrderStatus(0)}
-        >
-          All
-        </Button>
-        <Button className={cx('status', orderStatus === 1 && 'active-status')} onClick={() => setOrderStatus(1)}>
-          Pending
-        </Button>
-        <Button className={cx('status', orderStatus === 2 && 'active-status')} onClick={() => setOrderStatus(2)}>
-          Completed
-        </Button>
-        <Button className={cx('status', orderStatus === 3 && 'active-status')} onClick={() => setOrderStatus(3)}>
-          Canceled
-        </Button>
       </div>
       <div className={cx('orders')}>
         {orders.length !== 0 ? (
@@ -59,9 +42,10 @@ function UserOrders() {
             return (
               <OrderDetail
                 key={order.id}
-                orderNumber={order.orderNumber}
+                orderNumber={order.phone}
                 orderId={order.id}
                 status={order.status}
+                quantity={order.quantity}
                 itemList={order.products}
                 allActiveStatusRef={allActiveStatusRef}
                 onStatusChangeUpdate={onStatusChangeUpdate}

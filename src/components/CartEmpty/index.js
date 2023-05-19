@@ -13,11 +13,8 @@ function CartEmpty() {
       <FontAwesomeIcon className={cx('cartPage-empty-icon')} icon={faCartShopping} />
       <h2 className={cx('cartPage-empty-title')}>Your shopping cart is empty</h2>
       <p className={cx('cartPage-empty-description')}>Looks like you haven't made your choice yet...</p>
-      <Button primary className={cx('cartPage-empty-btn')} to={'/products'}>
-        Continue shopping
-      </Button>
       <Button primary className={cx('cartPage-empty-btn')} to={'/'}>
-        Return to home
+        Continue shopping
       </Button>
     </div>
   );

@@ -97,33 +97,30 @@ function Checkout() {
     setOrderDetails(products);
     setCartProducts([]);
 
-    const orderInfor = {
-      products,
-      totalPrice,
-      shippingInfor,
-    };
-    let order = {
-      firstName: 'John',
-      lastName: 'Doe',
-      companyName: 'Company',
-      country: 'vietname',
-      address: '27/8',
-      phone: '0328735659',
-      email: 'dycjh@example.com',
-
-      orderDetails: [
-        {
-          productId:'',
-          quantity:2,
-
-          orderId:1,
-        }
-      ],
-      quantity :'',
-      status: 'PENDING',
-      createdAt: '2015-25',
-      customerId: '',
+    const getQuantity = (products)=>{
+      let quantity = 0;
+      products.forEach(product => {
+        quantity += product.quantity;
+      });
+      return quantity;
     }
+    const orderInfor = {
+      orderDetails: products.map(product => ({
+        productId: product.id,
+        quantity: product.quantity,
+      })),
+      status: 'PENDING',
+      price: totalPrice,
+      firstName: shippingInfor.firstName,
+      lastName: shippingInfor.lastName,
+      companyName: shippingInfor.company,
+      country: shippingInfor.country,
+      address:shippingInfor.streetAddressRef,
+      phone: shippingInfor.phone,
+      email:shippingInfor.email,
+      quantity:getQuantity(products)
+    };
+
 
     orderApi.addOrder(getAccessToken(), orderInfor);
 

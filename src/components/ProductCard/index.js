@@ -40,13 +40,13 @@ function ProductCard({ data, toastDispatch, className }) {
       }),
     );
   };
-
+  console.log('concec : ', data?.image);
   return (
     <div className={cx('product-card', className)}>
       <Link to={`/detail/${data.id}`}>
         <div className={cx('product-img')}>
           {/* <img /> */}
-          <Image src={require(`../../assets/images/${data.image}`)} alt="" />
+          <Image src={require(`../../assets/images/${data?.image || 'avatardefault.png'}`)} alt="" />
         </div>
       </Link>
       <div className={cx('product-information')}>

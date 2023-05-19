@@ -70,7 +70,6 @@ function Register() {
             placeholder="Enter your full name"
             rounded
           />
-          <Input type={'text'} {...register('email')} error={errors.email} placeholder="Enter your email" rounded />
           <Input
             type={'text'}
             {...register('username')}
